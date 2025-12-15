@@ -15,20 +15,29 @@ public class a9_pascal {
         System.out.print("n = ");
         int n = sc.nextInt();
         
-        int m, a, b, c;
+        int[] row = new int[n];
+
+        row[0] = 1;
 
         for (int i = 0; i < n; i++) {
-            m = 2 * i + 1;
-
-            for (int j = 0; j < m; j++) {
-                a = 1;
-                b = 2;
-                c = a + b; 
-                
-                System.out.print(m+" ");
+            // update from right to left
+            for (int j = i; j > 0 ; j--) {
+                row[j] = row[j] + row[j - 1];
             }
-            System.out.println("");
+
+            // print space
+            for (int j = n - i; j > 0; j--) {
+                System.out.print(" ");
+            }
+
+            // print current row
+            for (int j = 0; j <= i; j++) {
+                System.out.print(row[j] + " ");
+            }
+            System.out.println();
         }
+        
+
         sc.close();
     }
 }
